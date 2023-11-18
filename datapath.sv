@@ -1,4 +1,4 @@
-module datapath(input [15:0]mdata, input[15:0]sximm8, input[7:0]PC, input[15:0]C, input[2:0]writenum, input write, input[2:0]readnum, input clk, input loada, input asel, input [1:0] ALUop, input loadc, input loadb, input[1:0] shift, input bsel, input loads, input[1:0] vsel, output Z_out, output[15:0] datapath_out);
+module datapath(input [15:0]mdata, input[15:0]sximm5, input[15:0]sximm8, input[7:0]PC, input[15:0]C, input[2:0]writenum, input write, input[2:0]readnum, input clk, input loada, input asel, input [1:0] ALUop, input loadc, input loadb, input[1:0] shift, input bsel, input loads, input[1:0] vsel, output Z_out, output[15:0] datapath_out);
 
 reg [15:0] data_in, Ain, Bin , in; 
 reg [15:0] data_out, sout, out; 
@@ -50,7 +50,7 @@ end
 //7
 always@(*)begin 
     case(bsel)
-        1'b1: Bin = {11'b0, datapath_in[4:0]}; 
+        1'b1: Bin = sximm5;    //changed input from "datapath_in" to sximm5
         1'b0: Bin = sout; 
     endcase 
 end 
@@ -59,7 +59,7 @@ end
     always@(*)begin             //changing the input MUX for regfile
     case(vsel)
     2'b00: data_in = C;
-    2'b01: data_in = PC;
+    2'b01: data_in = {8'b0,PC};
     2'b10: data_in = sximm8;
     2'b11: data_in = mdata;
     endcase
