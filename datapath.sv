@@ -1,4 +1,4 @@
-module datapath(input [15:0]mdata, input[15:0]sximm5, input[15:0]sximm8, input[7:0]PC, input[2:0]writenum, input write, input[2:0]readnum, input clk, input loada, input asel, input [1:0] ALUop, input loadc, input loadb, input[1:0] shift, input bsel, input loads, input[1:0] vsel, output Z_out, output[15:0] datapath_out);
+module datapath(input [15:0]mdata, input[15:0]sximm5, input[15:0]sximm8, input[7:0]PC, input[2:0]writenum, input write, input[2:0]readnum, input clk, input loada, input asel, input [1:0] ALUop, input loadc, input loadb, input[1:0] shift, input bsel, input loads, input[1:0] vsel, output Z_out,output N, output V, output Z, output[15:0] datapath_out);
 
 reg [15:0] data_in, Ain, Bin , in; 
 reg [15:0] data_out, sout, out; 
@@ -67,11 +67,11 @@ end
 
 
 //10 status block:
-always@(posedge clk)begin //Z[2] = loads, Z[1] = negative flag, Z[0] = overflow flag
+    always@(posedge clk)begin //N: negative flag, V, overflow flag, Z: zero flag
     if(loads) begin
-        Z_OUT[2] = 1;
-        if(out[15] == 1) Z_OUT[1] = 1;
-        else Z_OUT[1] = 0;
+        Z = 1'b1;
+        if(out[15] == 1) N = 1'b1;
+        else N = 1'b0;
         
     
     //NEED TO DO OVERFLOW DETECTION STILL 
