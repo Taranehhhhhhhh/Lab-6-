@@ -4,7 +4,7 @@ reg [15:0] data_in, Ain, Bin , in;
 reg [15:0] data_out, sout, out; 
 reg [15:0] A_out; 
 
-reg Z_OUT; 
+reg[2:0] Z_OUT; //changed to 3 bits to represent zero flag, negative flag, and overflow flag
 reg [15:0] datapath_OUT; 
 
 assign Z_out = Z_OUT; 
@@ -66,9 +66,16 @@ end
 end 
 
 
-//10
-always@(posedge clk)begin 
-    if(loads) Z_OUT = Z; 
+//10 status block:
+always@(posedge clk)begin //Z[2] = loads, Z[1] = negative flag, Z[0] = overflow flag
+    if(loads) begin
+        Z_OUT[2] = 1;
+        if(out[15] == 1) Z_OUT[1] = 1;
+        else Z_OUT[1] = 0;
+        
+    
+    //NEED TO DO OVERFLOW DETECTION STILL 
+    end
 end 
 
 
