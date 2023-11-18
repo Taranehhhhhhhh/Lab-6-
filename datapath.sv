@@ -66,17 +66,24 @@ end
 end 
 
 
-//10 status block:
+    //10[0] status block for negative check:
     always@(posedge clk)begin //N: negative flag, V, overflow flag, Z: zero flag
-    if(loads) begin
-        Z = 1'b1;
+        if(loads) begin
         if(out[15] == 1) N = 1'b1;
         else N = 1'b0;
-        
-    
-    //NEED TO DO OVERFLOW DETECTION STILL 
     end
 end 
+    //10[1] status block for Z (same as lab5
+    always@(posedge clk) begin
+        if(loads) Z = 1'b1;
+    end
+
+    //10[2] status block for overflow
+    always@(posedge clk) begin
+        if(loads) begin
+            //write code here
+        end
+    end
 
 
 endmodule: datapath 
