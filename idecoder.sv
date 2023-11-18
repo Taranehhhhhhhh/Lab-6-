@@ -67,7 +67,7 @@ assign out = 16'(signed'(in));
 endmodule: sign_ext5 
 
 
-//sign extension for a 8-but input 
+//sign extension for an 8-bit input 
 module sign_ext8([7:0] in, [15:0] out); 
 
 assign out = 16'(signed'(in));
