@@ -1,6 +1,9 @@
 module datapath_tb(); 
 
-reg [15:0]datapath_in; 
+reg [15:0]mdata;
+reg[15:0]sximm5;
+reg[15:0]sximm8;
+reg[7:0]PC;
 reg[2:0]writenum; 
 reg write; 
 reg[2:0]readnum; 
@@ -13,7 +16,7 @@ reg loadb;
 reg[1:0] shift; 
 reg bsel; 
 reg loads; 
-reg vsel;
+reg[1:0] vsel;
 reg err;   
 wire Z_out; 
 wire[15:0] datapath_out; 
