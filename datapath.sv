@@ -1,5 +1,5 @@
 module datapath(input [15:0]mdata, input[15:0]sximm5, input[15:0]sximm8, input[7:0]PC, input[2:0]writenum, input write, input[2:0]readnum, input clk, input loada, input asel, input [1:0] ALUop, input loadc, input loadb, input[1:0] shift, input bsel, input loads, input[2:0] vsel, output Z_out,output N, output V, output Z, output[15:0] datapath_out);
-
+//NEED TO SET SXIMM8 BECUASE IT NEEDS TO FILL IN BITS 15-8 WITH EITHER 0 OR 1 THEN THIS BECOMES DATAPATH_IN. THIS SHOULD HAPPEN IN DECODER 
 reg [15:0] data_in, Ain, Bin , in; 
 reg [15:0] data_out, sout, out; 
 reg [15:0] A_out; 
