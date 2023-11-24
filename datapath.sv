@@ -82,7 +82,11 @@ end
     //10[2] status block for overflow
     always@(posedge clk) begin
         if(loads) begin
-            //write code here
+            if(Ain[15] & Bin[15] & ~out[15] || ~Ain[15] & ~Bin[15] & out[15]) begin
+                v = 1;
+            end
+            else v = 0;
+            
         end
     end
 
